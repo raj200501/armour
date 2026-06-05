@@ -55,17 +55,18 @@ Armour is designed to support multiple trace-level agent safety slices:
 Current public artifacts:
 
 - 100 built-in eval cases
-- 32 live external-harness traces
+- 32 external-agent harness traces
 - 22 model-backed trace records
 - 20 model-backed claim-target traces
-- reviewer-calibrated replay policy
+- calibrated trace-replay policy
 - judge-comparison report
 - outcome-state report
 
-On the current 20-record claim-target set, the reviewer-calibrated Armour
-monitor produced no observed classification errors, while the generic offline
-LLM-judge-style proxy missed five risky tool-use traces. The detailed report
-includes the sample-size caveats; the front-page result is the error pattern.
+On the current 20-record claim-target calibration set, the reviewer-calibrated
+Armour monitor produced no observed classification errors, while the generic
+offline LLM-judge-style proxy missed five risky tool-use traces. The detailed
+report includes the sample-size caveats; the front-page result is the error
+pattern.
 
 | Baseline | Records | TP | FP | TN | FN | Main Readout |
 |---|---:|---:|---:|---:|---:|---|

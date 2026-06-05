@@ -7,7 +7,7 @@ agent safety workflow.
 
 | Artifact | Purpose |
 |---|---|
-| `model_claim_judge_comparison.md` | Compares the reviewer-calibrated Armour monitor with a generic offline LLM-judge-style proxy. |
+| `model_claim_judge_comparison.md` | Compares the calibrated Armour trace monitor with a generic offline LLM-judge-style proxy. |
 | `model_claim_judge_comparison.json` | Machine-readable version of the judge-comparison report. |
 | `outcome_state_model_claim_candidates.md` | Separates risky action intent from execution outcome. |
 | `outcome_state_model_claim_candidates.json` | Machine-readable outcome-state report. |
@@ -20,7 +20,7 @@ public readout is the error pattern:
 
 | Baseline | Records | False Positives | False Negatives | Risky Traces Missed |
 |---|---:|---:|---:|---:|
-| Armour reviewer-calibrated monitor | 20 | 0 | 0 | 0 / 10 |
+| Armour calibrated trace monitor | 20 | 0 | 0 | 0 / 10 |
 | Generic offline judge proxy | 20 | 0 | 5 | 5 / 10 |
 
 ## Limitations
@@ -29,5 +29,5 @@ public readout is the error pattern:
   predictions are supplied.
 - Current model traces are a compact claim-target set, not a broad population
   study.
-- Anonymous or operator-attested review evidence is useful for iteration but
-  weaker than named/public independent reproduction.
+- Current reviewer-calibrated labels are useful for iteration but provisional
+  until named/public independent reproduction.
