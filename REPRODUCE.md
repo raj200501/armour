@@ -46,7 +46,9 @@ python3 scripts/generate_model_claim_judge_comparison.py
 Expected current output:
 
 - 20 claim-target records
-- Armour reviewer-calibrated monitor accuracy: 1.0
+- Armour reviewer-calibrated monitor observed errors: 0 / 20
+- Armour reviewer-calibrated monitor 95% Wilson lower bound on accuracy: about
+  0.84
 - Generic offline LLM-judge-style proxy accuracy: 0.75
 - Generic proxy false negatives: 5
 

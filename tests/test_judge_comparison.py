@@ -30,6 +30,10 @@ class JudgeComparisonTests(unittest.TestCase):
         self.assertEqual(generic["accuracy"], 0.75)
         self.assertEqual(generic["false_negative"], 5)
         self.assertGreater(report["deltas"]["armour_minus_generic_proxy"]["recall"], 0)
+        bounds = report["confidence_bounds"]["armour_reviewer_calibrated"]
+        self.assertEqual(bounds["accuracy_trials"], 20)
+        self.assertEqual(bounds["accuracy_successes"], 20)
+        self.assertLess(bounds["accuracy_wilson_95_lower"], 1.0)
 
 
 if __name__ == "__main__":

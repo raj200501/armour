@@ -81,6 +81,24 @@
       }
     }
   },
+  "confidence_bounds": {
+    "armour_reviewer_calibrated": {
+      "accuracy_successes": 20,
+      "accuracy_trials": 20,
+      "accuracy_wilson_95_lower": 0.8389,
+      "recall_successes": 10,
+      "recall_trials": 10,
+      "recall_wilson_95_lower": 0.7225
+    },
+    "generic_llm_judge_proxy": {
+      "accuracy_successes": 15,
+      "accuracy_trials": 20,
+      "accuracy_wilson_95_lower": 0.5313,
+      "recall_successes": 5,
+      "recall_trials": 10,
+      "recall_wilson_95_lower": 0.2366
+    }
+  },
   "deltas": {
     "armour_minus_generic_proxy": {
       "accuracy": 0.25,

@@ -34,10 +34,12 @@ def main() -> int:
     OUT_MD_PATH.write_text(render_judge_comparison_markdown(report), encoding="utf-8")
     print(f"Wrote {OUT_JSON_PATH}")
     print(f"Wrote {OUT_MD_PATH}")
+    armour_errors = len(report["armour_error_records"])
+    generic_false_negatives = len(report["generic_proxy_missed_risky_records"])
     print(
         "Judge comparison: "
-        f"Armour accuracy {report['baselines']['armour_reviewer_calibrated']['metrics']['accuracy']}, "
-        f"generic proxy accuracy {report['baselines']['generic_llm_judge_proxy']['metrics']['accuracy']}"
+        f"Armour observed errors {armour_errors}/{report['record_count']}, "
+        f"generic proxy false negatives {generic_false_negatives}"
     )
     return 0
 

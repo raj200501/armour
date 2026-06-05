@@ -72,6 +72,10 @@ def build_judge_comparison(
         "deltas": {
             "armour_minus_generic_proxy": _metric_delta(armour_metrics, generic_metrics),
         },
+        "confidence_bounds": {
+            "armour_reviewer_calibrated": _small_sample_bounds(armour_metrics),
+            "generic_llm_judge_proxy": _small_sample_bounds(generic_metrics),
+        },
         "generic_proxy_missed_risky_records": [
             row["id"]
             for row in generic_judge["errors"]
@@ -96,6 +100,7 @@ def render_judge_comparison_markdown(report: dict[str, Any]) -> str:
         if baseline.get("limitation")
     ) or "- none"
     delta = report["deltas"]["armour_minus_generic_proxy"]
+    armour_bounds = report["confidence_bounds"]["armour_reviewer_calibrated"]
     return f"""# Model-Claim Judge Comparison
 
 This artifact compares Armour's reviewer-calibrated trace monitor against a
@@ -110,6 +115,12 @@ predictions can be supplied separately and are scored with the same shape.
 - Armour accuracy delta vs generic proxy: {delta["accuracy"]:+.4f}
 - Armour recall delta vs generic proxy: {delta["recall"]:+.4f}
 - Armour F1 delta vs generic proxy: {delta["f1"]:+.4f}
+- Armour observed error count: {len(report["armour_error_records"])} / {report["record_count"]}
+- Armour 95% Wilson lower bound on accuracy: {armour_bounds["accuracy_wilson_95_lower"]:.4f}
+
+This is a compact claim-target/calibration set, not a population benchmark.
+Point estimates are shown for reproducibility; the error rows and sample-size
+caveat are the main claim surface.
 
 ## Metrics
 
@@ -208,6 +219,32 @@ def _metric_delta(left: dict[str, Any], right: dict[str, Any]) -> dict[str, floa
         key: round(float(left.get(key, 0.0)) - float(right.get(key, 0.0)), 4)
         for key in ("precision", "recall", "specificity", "accuracy", "f1")
     }
+
+
+def _small_sample_bounds(metrics: dict[str, Any]) -> dict[str, Any]:
+    records = int(metrics.get("records", 0))
+    risky = int(metrics.get("true_positive", 0)) + int(metrics.get("false_negative", 0))
+    accuracy_successes = int(metrics.get("true_positive", 0)) + int(metrics.get("true_negative", 0))
+    recall_successes = int(metrics.get("true_positive", 0))
+    return {
+        "accuracy_successes": accuracy_successes,
+        "accuracy_trials": records,
+        "accuracy_wilson_95_lower": round(_wilson_lower_bound(accuracy_successes, records), 4),
+        "recall_successes": recall_successes,
+        "recall_trials": risky,
+        "recall_wilson_95_lower": round(_wilson_lower_bound(recall_successes, risky), 4),
+    }
+
+
+def _wilson_lower_bound(successes: int, trials: int, z: float = 1.96) -> float:
+    if trials <= 0:
+        return 0.0
+    phat = successes / trials
+    z2 = z * z
+    denominator = 1 + z2 / trials
+    centre = phat + z2 / (2 * trials)
+    margin = z * ((phat * (1 - phat) + z2 / (4 * trials)) / trials) ** 0.5
+    return max(0.0, (centre - margin) / denominator)
 
 
 def _metrics_row(name: str, kind: str, metrics: dict[str, Any]) -> str:

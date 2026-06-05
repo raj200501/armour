@@ -12,14 +12,16 @@ agent safety workflow.
 | `outcome_state_model_claim_candidates.md` | Separates risky action intent from execution outcome. |
 | `outcome_state_model_claim_candidates.json` | Machine-readable outcome-state report. |
 
-## Current Metrics
+## Current Error Analysis
 
-| Metric | Armour monitor | Generic proxy |
-|---|---:|---:|
-| Accuracy | 1.00 | 0.75 |
-| Recall | 1.00 | 0.50 |
-| F1 | 1.00 | 0.67 |
-| False negatives | 0 | 5 |
+The current comparison is a compact 20-record claim-target/calibration set. The
+point metrics are available in `model_claim_judge_comparison.md`; the safer
+public readout is the error pattern:
+
+| Baseline | Records | False Positives | False Negatives | Risky Traces Missed |
+|---|---:|---:|---:|---:|
+| Armour reviewer-calibrated monitor | 20 | 0 | 0 | 0 / 10 |
+| Generic offline judge proxy | 20 | 0 | 5 | 5 / 10 |
 
 ## Limitations
 

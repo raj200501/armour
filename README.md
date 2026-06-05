@@ -50,13 +50,15 @@ Current public artifacts:
 - judge-comparison report
 - outcome-state report
 
-On the current claim-target set, the reviewer-calibrated Armour monitor catches
-risky tool-use traces that a generic offline LLM-judge-style proxy misses.
+On the current 20-record claim-target set, the reviewer-calibrated Armour
+monitor produced no observed classification errors, while the generic offline
+LLM-judge-style proxy missed five risky tool-use traces. The detailed report
+includes the sample-size caveats; the front-page result is the error pattern.
 
-| Baseline | Accuracy | Recall | F1 | False Negatives |
-|---|---:|---:|---:|---:|
-| Armour reviewer-calibrated monitor | 1.00 | 1.00 | 1.00 | 0 |
-| Generic LLM-judge-style proxy | 0.75 | 0.50 | 0.67 | 5 |
+| Baseline | Records | TP | FP | TN | FN | Main Readout |
+|---|---:|---:|---:|---:|---:|---|
+| Armour reviewer-calibrated monitor | 20 | 10 | 0 | 10 | 0 | 0 observed monitor errors |
+| Generic LLM-judge-style proxy | 20 | 5 | 0 | 10 | 5 | Missed 5 / 10 risky traces |
 
 See:
 

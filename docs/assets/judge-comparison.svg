@@ -1,33 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
-  <title id="title">Judge comparison metrics</title>
-  <desc id="desc">Bar chart comparing Armour monitor and generic proxy on accuracy, recall, and F1.</desc>
-  <rect width="920" height="360" fill="#ffffff"/>
-  <text x="40" y="46" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Trace-Level Judge Comparison</text>
-  <text x="40" y="76" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="14">Claim-target set: 20 records. Armour uses reviewer-calibrated trace replay; generic proxy uses an offline LLM-judge-style rubric.</text>
-  <line x1="110" y1="290" x2="850" y2="290" stroke="#d1d5db" stroke-width="1"/>
-  <line x1="110" y1="110" x2="110" y2="290" stroke="#d1d5db" stroke-width="1"/>
-  <text x="78" y="294" fill="#6b7280" font-family="Inter, Arial, sans-serif" font-size="12">0.0</text>
-  <text x="78" y="204" fill="#6b7280" font-family="Inter, Arial, sans-serif" font-size="12">0.5</text>
-  <text x="78" y="114" fill="#6b7280" font-family="Inter, Arial, sans-serif" font-size="12">1.0</text>
-  <line x1="110" y1="200" x2="850" y2="200" stroke="#eef2f7" stroke-width="1"/>
-  <line x1="110" y1="110" x2="850" y2="110" stroke="#eef2f7" stroke-width="1"/>
-  <rect x="165" y="110" width="42" height="180" rx="3" fill="#0f766e"/>
-  <rect x="214" y="155" width="42" height="135" rx="3" fill="#64748b"/>
-  <rect x="385" y="110" width="42" height="180" rx="3" fill="#0f766e"/>
-  <rect x="434" y="200" width="42" height="90" rx="3" fill="#64748b"/>
-  <rect x="605" y="110" width="42" height="180" rx="3" fill="#0f766e"/>
-  <rect x="654" y="170" width="42" height="120" rx="3" fill="#64748b"/>
-  <text x="156" y="315" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="14">Accuracy</text>
-  <text x="390" y="315" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="14">Recall</text>
-  <text x="636" y="315" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="14">F1</text>
-  <text x="168" y="102" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">1.00</text>
-  <text x="216" y="147" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">0.75</text>
-  <text x="388" y="102" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">1.00</text>
-  <text x="438" y="192" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">0.50</text>
-  <text x="608" y="102" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">1.00</text>
-  <text x="657" y="162" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">0.67</text>
-  <rect x="704" y="36" width="14" height="14" rx="2" fill="#0f766e"/>
-  <text x="724" y="48" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="13">Armour monitor</text>
-  <rect x="704" y="60" width="14" height="14" rx="2" fill="#64748b"/>
-  <text x="724" y="72" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="13">Generic proxy</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="440" viewBox="0 0 920 440" role="img" aria-labelledby="title desc">
+  <title id="title">Claim-target error analysis</title>
+  <desc id="desc">Bar chart comparing false negatives and false positives for Armour's reviewer-calibrated monitor and a generic offline judge proxy on a 20-record claim-target set.</desc>
+  <rect width="920" height="440" fill="#ffffff"/>
+
+  <text x="40" y="46" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="700">Claim-Target Error Analysis</text>
+  <text x="40" y="76" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="15">20 reviewed model-backed traces. Lower is better.</text>
+  <text x="40" y="99" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="15">Armour produced zero observed monitor errors; the generic proxy missed five risky traces.</text>
+
+  <rect x="40" y="124" width="14" height="14" rx="3" fill="#0f766e"/>
+  <text x="62" y="137" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="14">Armour reviewer-calibrated monitor</text>
+  <rect x="326" y="124" width="14" height="14" rx="3" fill="#64748b"/>
+  <text x="348" y="137" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="14">Generic offline judge proxy</text>
+
+  <line x1="118" y1="350" x2="820" y2="350" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="118" y1="190" x2="118" y2="350" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="118" y1="270" x2="820" y2="270" stroke="#edf2f7" stroke-width="1"/>
+  <line x1="118" y1="190" x2="820" y2="190" stroke="#edf2f7" stroke-width="1"/>
+
+  <text x="91" y="354" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12">0</text>
+  <text x="85" y="274" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12">2.5</text>
+  <text x="91" y="194" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12">5</text>
+  <text x="60" y="174" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12">errors</text>
+
+  <rect x="250" y="344" width="56" height="6" rx="3" fill="#0f766e"/>
+  <rect x="320" y="190" width="56" height="160" rx="4" fill="#64748b"/>
+  <rect x="572" y="344" width="56" height="6" rx="3" fill="#0f766e"/>
+  <rect x="642" y="344" width="56" height="6" rx="3" fill="#64748b"/>
+
+  <text x="273" y="334" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">0</text>
+  <text x="343" y="180" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">5</text>
+  <text x="595" y="334" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">0</text>
+  <text x="665" y="334" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">0</text>
+
+  <text x="260" y="382" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600">False negatives</text>
+  <text x="584" y="382" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600">False positives</text>
+
+  <text x="40" y="414" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="13">Detailed metrics and confidence bounds are included in the reproducible benchmark report.</text>
 </svg>

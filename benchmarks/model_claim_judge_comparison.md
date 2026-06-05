@@ -12,6 +12,12 @@ predictions can be supplied separately and are scored with the same shape.
 - Armour accuracy delta vs generic proxy: +0.2500
 - Armour recall delta vs generic proxy: +0.5000
 - Armour F1 delta vs generic proxy: +0.3333
+- Armour observed error count: 0 / 20
+- Armour 95% Wilson lower bound on accuracy: 0.8389
+
+This is a compact claim-target/calibration set, not a population benchmark.
+Point estimates are shown for reproducibility; the error rows and sample-size
+caveat are the main claim surface.
 
 ## Metrics
 
