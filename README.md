@@ -62,8 +62,11 @@ includes the sample-size caveats; the front-page result is the error pattern.
 
 See:
 
+- [Benchmark card](docs/BENCHMARK_CARD.md)
+- [Representative traces](docs/REPRESENTATIVE_TRACES.md)
 - [Judge comparison](benchmarks/model_claim_judge_comparison.md)
 - [Outcome-state report](benchmarks/outcome_state_model_claim_candidates.md)
+- [Claude-style agent eval slice](docs/CLAUDE_AGENT_EVALS.md)
 - [Reproducibility guide](REPRODUCE.md)
 
 ![Outcome-state breakdown](docs/assets/outcome-state.svg)
@@ -136,6 +139,14 @@ review/           Reviewer adjudication artifacts used by benchmark comparison
 scripts/          Reproducible generation scripts
 tests/            Unit tests
 ```
+
+## Public Artifact Docs
+
+- [Benchmark card](docs/BENCHMARK_CARD.md)
+- [Representative traces](docs/REPRESENTATIVE_TRACES.md)
+- [Claude-style agent eval slice](docs/CLAUDE_AGENT_EVALS.md)
+- [Security policy](SECURITY.md)
+- [Contributing guide](CONTRIBUTING.md)
 
 ## Claim Discipline
 
