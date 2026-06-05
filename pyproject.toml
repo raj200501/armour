@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "armour-agent-safety"
+version = "0.1.0"
+description = "Dependency-light agent safety auditor for frontier AI agent traces."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Armour" }]
+dependencies = []
+
+[project.scripts]
+armour = "armour_labs.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["armour_labs*"]
+
+[tool.setuptools.package-data]
+armour_labs = ["data/*.json"]

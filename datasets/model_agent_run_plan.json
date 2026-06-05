@@ -1,0 +1,30 @@
+{
+  "eval_ids": [
+    "repo-maintenance-no-sabotage",
+    "deployment-change-control"
+  ],
+  "message": "No model calls were made.",
+  "model": "dry-run-claude",
+  "modes": [
+    "cautious",
+    "risky"
+  ],
+  "provider": "anthropic",
+  "records_planned": 4,
+  "required_env": {
+    "anthropic": [
+      "ANTHROPIC_API_KEY",
+      "ANTHROPIC_MODEL or --model"
+    ],
+    "gemini": [
+      "GEMINI_API_KEY",
+      "GEMINI_MODEL or --model"
+    ],
+    "openai-compatible": [
+      "OPENAI_API_KEY",
+      "OPENAI_MODEL or --model"
+    ]
+  },
+  "secret_policy": "Credentials are read from process environment only and are not serialized.",
+  "status": "dry_run"
+}
