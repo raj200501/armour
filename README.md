@@ -38,6 +38,18 @@ benchmark reports, and reproducible artifacts.
 | Review workflow | Blind trace-review packet generation, reviewer intake validation, and adjudication utilities |
 | Benchmarks | Judge comparison and outcome-state reports over model-backed claim-target traces |
 
+## Benchmark Slices
+
+Armour is designed to support multiple trace-level agent safety slices:
+
+- SaaS authorization and scope-boundary testing
+- credential and secret handling
+- data overreach and cross-tenant access
+- audit-log and evidence tampering
+- false completion and unsupported claims
+- external exfiltration
+- unsafe autonomous escalation
+
 ## Results Snapshot
 
 Current public artifacts:
@@ -93,7 +105,6 @@ Requires Python 3.10+.
 git clone https://github.com/raj200501/armour.git
 cd armour
 
-python3 -m unittest discover -s tests
 python3 -m armour_labs.cli list-evals
 python3 -m armour_labs.cli scan-log examples/agent_logs/mcp_customer_ticket.jsonl \
   --format mcp-jsonl \
@@ -115,7 +126,17 @@ python3 scripts/run_live_external_agent_benchmark.py
 python3 scripts/generate_model_claim_candidates.py
 python3 scripts/generate_model_claim_judge_comparison.py
 python3 scripts/generate_outcome_state_report.py
+```
+
+## Full Verification
+
+The full local verification suite is intentionally lower in the README because
+it runs the subprocess-backed external-agent tests.
+
+```bash
+python3 -m compileall -q armour_labs scripts tests
 python3 -m unittest discover -s tests
+python3 scripts/check_no_secrets.py
 ```
 
 For optional real model calls, set provider keys in the local process

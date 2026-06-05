@@ -105,9 +105,9 @@ This report summarizes reviewer coverage, agreement, and reviewer provenance.
 - Consensus items: {summary["consensus_items"]}
 - Disagreement items: {summary["disagreement_items"]}
 - First-party response rows: {summary["first_party_response_rows"]}
-- Anonymous external response rows: {summary["anonymous_external_response_rows"]}
+- Provisional reviewer response rows: {summary["anonymous_external_response_rows"]}
 - External response rows: {summary["external_response_rows"]}
-- Claim-eligible external items: {summary["claim_eligible_external_items"]}
+- Provisionally reviewed items: {summary["claim_eligible_external_items"]}
 - Unknown review IDs: {summary["unknown_review_ids"]}
 - Coverage: {_pct(summary["coverage"])}
 - Completion: {_pct(summary["completion"])}
@@ -288,8 +288,9 @@ def _pct(value: float) -> str:
 def _provenance_note(summary: dict[str, Any]) -> str:
     if summary.get("claim_eligible_external_items", 0):
         return (
-            "Anonymous external rows can support trace-review claims when "
-            "operator-attested; first-party rows remain calibration only."
+            "Current labels are reviewer-calibrated fixtures and should be "
+            "treated as provisional until independently reproduced. Do not "
+            "treat this artifact as independent external validation."
         )
     return (
         "Do not use this for external benchmark claims until responses come "

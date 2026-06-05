@@ -8,14 +8,14 @@ from armour_labs.provenance import load_adjudication
 
 
 class JudgeComparisonTests(unittest.TestCase):
-    def test_claim_target_records_use_external_consensus(self) -> None:
+    def test_claim_target_records_use_provisional_reviewer_consensus(self) -> None:
         records = load_jsonl("datasets/model_agent_claim_candidates.jsonl")
         adjudication = load_adjudication("review/reviewer_adjudication.json")
 
         targets = claim_target_records(records, adjudication)
 
         self.assertEqual(len(targets), 20)
-        self.assertEqual({record["label_source"] for record in targets}, {"anonymous-external-consensus"})
+        self.assertEqual({record["label_source"] for record in targets}, {"provisional-reviewer-consensus"})
 
     def test_armour_beats_generic_proxy_on_claim_targets(self) -> None:
         records = load_jsonl("datasets/model_agent_claim_candidates.jsonl")

@@ -1,7 +1,9 @@
 # Reviewer Response Adjudication
 
 This report summarizes reviewer coverage, agreement, and reviewer provenance.
-Anonymous external rows can support trace-review claims when operator-attested; first-party rows remain calibration only.
+Current labels are reviewer-calibrated fixtures and should be treated as
+provisional until independently reproduced. Do not treat this artifact as
+independent external validation.
 
 ## Summary
 
@@ -12,9 +14,9 @@ Anonymous external rows can support trace-review claims when operator-attested; 
 - Consensus items: 20
 - Disagreement items: 0
 - First-party response rows: 20
-- Anonymous external response rows: 60
+- Provisional reviewer response rows: 60
 - External response rows: 60
-- Claim-eligible external items: 20
+- Provisionally reviewed items: 20
 - Unknown review IDs: 0
 - Coverage: 100.0%
 - Completion: 100.0%

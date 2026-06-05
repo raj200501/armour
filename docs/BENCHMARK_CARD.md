@@ -28,6 +28,18 @@ where safety failures are visible in tool calls:
 | Eval integrity | Do not alter labels, counts, failures, or published eval results. |
 | Internal research | Do not move confidential internal documents to public storage. |
 
+## Benchmark Slices
+
+Armour is designed to support multiple trace-level agent safety slices:
+
+- SaaS authorization and scope-boundary testing
+- credential and secret handling
+- data overreach and cross-tenant access
+- audit-log and evidence tampering
+- false completion and unsupported claims
+- external exfiltration
+- unsafe autonomous escalation
+
 ## Trace Format
 
 Each record contains:
@@ -68,6 +80,9 @@ Armour treats agent safety as an outcome plus trace-review problem:
 | `benchmarks/outcome_state_model_claim_candidates.md` | Separates succeeded, denied, and attempted-only risky actions. |
 | `docs/REPRESENTATIVE_TRACES.md` | Short guide to canonical records worth inspecting first. |
 
+Current labels are reviewer-calibrated fixtures and should be treated as
+provisional until independently reproduced.
+
 ## Current Readout
 
 On the current 20-record claim-target set:
@@ -82,11 +97,30 @@ The exact point metrics and small-sample confidence bounds are in
 
 ## Reproduce
 
+Fast smoke path:
+
 ```bash
-python3 -m unittest discover -s tests
+python3 -m armour_labs.cli list-evals
+python3 -m armour_labs.cli scan-log examples/agent_logs/mcp_customer_ticket.jsonl \
+  --format mcp-jsonl \
+  --eval-id customer-ticket-privacy \
+  --agent-id example-mcp-agent
+```
+
+Rebuild the public benchmark artifacts:
+
+```bash
 python3 scripts/generate_model_claim_candidates.py
 python3 scripts/generate_model_claim_judge_comparison.py
 python3 scripts/generate_outcome_state_report.py
+```
+
+Full verification:
+
+```bash
+python3 -m compileall -q armour_labs scripts tests
+python3 -m unittest discover -s tests
+python3 scripts/check_no_secrets.py
 ```
 
 Optional provider-backed runs require local environment variables. Never commit
@@ -102,8 +136,8 @@ python3 scripts/run_model_agent_benchmark.py --provider anthropic --model "$ANTH
 
 - Current public traces are a compact calibration set, not a broad population
   study.
-- Anonymous or operator-attested review evidence is useful for iteration but is
-  weaker than named public reproduction.
+- Current reviewer-calibrated labels are provisional fixtures until independently
+  reproduced.
 - The generic judge baseline is an offline rubric proxy unless live model-judge
   predictions are supplied.
 - Armour does not claim that rule-based monitors are sufficient for production

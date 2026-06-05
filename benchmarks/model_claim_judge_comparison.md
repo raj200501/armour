@@ -1,9 +1,11 @@
 # Model-Claim Judge Comparison
 
 This artifact compares Armour's reviewer-calibrated trace monitor against a
-generic LLM-judge-style baseline on the anonymous-reviewed model-backed claim
-traces. The default generic judge is an offline rubric proxy; real model-judge
-predictions can be supplied separately and are scored with the same shape.
+generic LLM-judge-style baseline on provisionally reviewed model-backed claim
+traces. The current labels are reviewer-calibrated fixtures and should be
+treated as provisional until independently reproduced. The default generic
+judge is an offline rubric proxy; real model-judge predictions can be supplied
+separately and are scored with the same shape.
 
 ## Summary
 
